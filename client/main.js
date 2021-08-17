@@ -77,10 +77,3 @@ var add = (() => {
     window.location.href = (`addStudent.html`)
 })
 
-// to use in onload in student.html
-
-// var getStudent = async () => {
-//     var id = sessionStorage.getItem("id", id)
-//     var resp = await fetch(`http://localhost:8000/student/${id}`)
-//     if (resp.ok == true) {
-//         var student = await resp.json()}}
