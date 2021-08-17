@@ -6,7 +6,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
    </head>
-
 <body onload="editStudent()" class="backGround">
     <span class="fontStyle">full name: </span><input type="text" id="fn" class="heighttext" ><br />
     <span class="fontStyle">email: </span><input type="text" id="email" class="heighttext"><br />
@@ -15,7 +14,6 @@
     <input type="button" value="update" onclick="updateData()" class="myButton">
     </table>
     <script>
-
         var editStudent = async () => {
             var id = sessionStorage.getItem("id")
             var resp = await fetch(`http://localhost:8000/students/${id}`)
@@ -46,10 +44,6 @@
             fetch(`http://localhost:8000/students/${id}`, fetchParams)
             window.location.href = (`main.html`)
         }
-
-
-
-
     </script>
 </body>
 
