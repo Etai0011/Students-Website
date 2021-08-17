@@ -1,0 +1,103 @@
+
+.titleStyle {
+    color: aliceblue;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 6em;
+}
+
+.backGround{
+    background-image: url(backGround.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tableStyle{
+    border-collapse: collapse;
+    border-color: white;
+    margin: 10px 0;
+    margin-top: -10px;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.tableStyle th{
+    color: #d7e3fc;
+    font-size: 1.3em;
+    padding: 12px 15px;
+}
+
+.tableStyle td {
+    padding: 12px 15px;
+    color:  #eae2b7
+}
+
+.myButton {
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+	background-color:#599bb3;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 22px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+	background-color:#408c99;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.tableButton {
+	box-shadow:inset 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.tableButton:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+.tableButton:active {
+	position:relative;
+	top:1px;
+}
+
+.fontStyle{
+    color: white;
+    font-family: 'Otomanopee One', sans-serif;
+    font-size: 1.5em;
+}
+
+.heighttext{
+    display:inline-block;
+    padding:5px 5px;
+    line-height:120%;
+    font-size: larger;
+}
+
+
+
+
+

@@ -1,0 +1,108 @@
+<html>
+
+    <head>
+        <title> Students</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Zen+Loop&display=swap" rel="stylesheet">
+   </head>
+
+<body onload="showgrades()" class="backGround">
+    <h3 class="titleStyle">The grades</h3>
+    <table id="tbl" border="1" class="tableStyle">
+        <tr id="tr">
+            <th>Date:</th>
+            <th>Grade:</th>
+        </tr>
+    </table> <br><br>
+    <input type="button" value="update" onclick="updateGrades()" class="myButton">
+    <input type="button" value="Add Grade" onclick="Addgrade()" class="myButton">
+    <script>
+        var tbl = document.getElementById("tbl")
+        var id = sessionStorage.getItem("id")
+        var newGrades = []
+        var student;
+
+
+
+        var showgrades = async () => {
+            var resp = await fetch(`http://localhost:8000/students/${id}`)
+            if (resp.ok == true) {
+                student = await resp.json()
+                var grades = student.grades || []
+                grades.forEach(currEntery => {
+                    AddTableEnt(currEntery);
+                })
+            }
+        }
+
+        var AddTableEnt = (currEntery) => {
+            var currGrade = currEntery.grade
+            var currDate = currEntery.date
+            
+            var Ftr = document.createElement("tr")
+            var dateTD = document.createElement("td")
+            var gradeTD = document.createElement("td")
+            var dateIN = document.createElement("input")
+            var gradeIN = document.createElement("input")
+            dateIN.value = currDate
+            dateIN.className="heighttext"
+            gradeIN.value = currGrade
+            gradeIN.className="heighttext"
+            tbl.appendChild(Ftr)
+            Ftr.appendChild(dateTD)
+            Ftr.appendChild(gradeTD)
+            dateTD.appendChild(dateIN)
+            gradeTD.appendChild(gradeIN)
+
+        }
+
+        var getDate = (date) => {
+            var taskToEdit = new Date(date)
+            var finalDate  = `${taskToEdit.getDate()}/${taskToEdit.getMonth()+1}/${taskToEdit.getFullYear()}`
+            return finalDate
+        }
+
+        var Addgrade = () => {
+
+            var Newobj = {
+                grade: 0,
+                date: getDate(new Date())
+            }
+            AddTableEnt(Newobj)
+        }
+       
+            
+            var updateGrades = () => {
+                var trList = tbl.querySelectorAll('tr')
+                
+                for (var i = 1; i < trList.length; i++) {
+                    var currTr = trList[i]
+                    getTrValues(currTr)
+                }
+                
+                student.grades = newGrades
+                var fetchParams = {
+                    method: 'put',
+                    body: JSON.stringify(student),
+                    headers: { "Content-type": "application/json" }
+                }
+                fetch(`http://localhost:8000/students/${id}`, fetchParams)
+                window.location.href = `main.html`
+        }
+
+        var getTrValues = (elTr) => {
+            var elTds = elTr.querySelectorAll('td')
+            var date = elTds[0].querySelector('input').value
+            var grade = elTds[1].querySelector('input').value
+            var newGrade = { grade: +grade, date }
+            newGrades.push(newGrade)
+        }
+
+
+
+    </script>
+</body>
+
+</html>

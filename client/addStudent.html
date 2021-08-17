@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
+    </head>
+
+<body class="backGround">
+    <h1  class="titleStyle">Add Student</h1>
+    <span class="fontStyle">Full Name: </span> <input type="text" id="fn" class="heighttext"><br />
+    <span class="fontStyle">Email: </span> <input type="text" id="email" class="heighttext"><br />
+    <span class="fontStyle"> faculty: </span><input type="text" id="fac" class="heighttext"><br />
+    <span class="fontStyle"> birth day: </span><input type="date" id="bd" class="heighttext"><br />
+    <input type="button" value="Add" onclick="AddStudent()" class="MyButton">
+
+    <script>
+        var AddStudent = () => {
+            var newStudent = {
+                fullname: document.getElementById("fn").value,
+                email: document.getElementById("email").value,
+                faculty: document.getElementById("fac").value,
+                birthday: document.getElementById("bd").value,
+                grades: [{ grade: "", date: "" }]
+            }
+            var fetchParams = {
+                method: 'post',
+                body: JSON.stringify(newStudent),
+                headers: { "Content-type": "application/json" }
+            }
+            fetch(`http://localhost:8000/students`, fetchParams)
+            window.location.href = (`main.html`)
+        }
+
+    </script>
+</body>
+
+</html>

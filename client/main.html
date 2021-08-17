@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <title> Students</title>
+     <link rel="stylesheet" href="style.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Zen+Loop&display=swap" rel="stylesheet">
+</head>
+
+
+<body onload="getAllStudents()" class="backGround">
+
+    <h1 class="titleStyle">Students Website</h1>
+    <table id="tbl" border="1" class="tableStyle">
+        <tr id="tblmr">
+            <th id="fn">Full Name</th>
+            <th id="fac">Faculty</th>
+            <th id="grades">Grades</th>
+            <th id="edit">Edit</th>
+            <th id="del">Delete</th>
+        </tr>
+    </table>
+    <input type="button" value="add student" onclick="add()" class="myButton">
+
+    <script src="main.js"></script>
+</body>

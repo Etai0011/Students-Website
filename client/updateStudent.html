@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title> Students</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
+   </head>
+
+<body onload="editStudent()" class="backGround">
+    <span class="fontStyle">full name: </span><input type="text" id="fn" class="heighttext" ><br />
+    <span class="fontStyle">email: </span><input type="text" id="email" class="heighttext"><br />
+    <span class="fontStyle">faculty: </span><input type="text" id="fac" class="heighttext"><br />
+    <span class="fontStyle">birth day: </span><input type="text" id="bd" class="heighttext"><br />
+    <input type="button" value="update" onclick="updateData()" class="myButton">
+    </table>
+    <script>
+
+        var editStudent = async () => {
+            var id = sessionStorage.getItem("id")
+            var resp = await fetch(`http://localhost:8000/students/${id}`)
+            if (resp.ok == true) {
+                var student = await resp.json()
+                document.getElementById('fn').value = student.fullname;
+                document.getElementById('email').value = student.email;
+                document.getElementById('fac').value = student.faculty;
+                document.getElementById('bd').value = student.birthday.substring(0, 10);
+            }
+
+        }
+        var updateData = () => {
+            var id = sessionStorage.getItem("id")
+            var updateObject =
+            {
+                fullname: document.getElementById("fn").value,
+                email: document.getElementById("email").value,
+                faculty: document.getElementById("fac").value,
+                birthday: document.getElementById("bd").value
+            }
+
+            var fetchParams = {
+                method: 'put',
+                body: JSON.stringify(updateObject),
+                headers: { "Content-type": "application/json" }
+            }
+            fetch(`http://localhost:8000/students/${id}`, fetchParams)
+            window.location.href = (`main.html`)
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head> 
+    <h1 class="titleStyle">student info</h1> <br/>
+    <link rel="stylesheet" href="style.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Zen+Loop&display=swap" rel="stylesheet">
+</head>
+<body onload="getStudent()" class="backGround">
+   <b class="fontStyle">Full name: </b> <span id="fn" class="fontStyle"></span> <br/>
+   <b class="fontStyle">Email: </b>  <span id="email" class="fontStyle"></span> <br/>
+   <b class="fontStyle">Faculty: </b> <span id="fac" class="fontStyle"></span> <br/>
+   <b class="fontStyle">Birth day: </b>  <span id="bd" class="fontStyle"></span> <br/>
+    <script>
+        var getStudent = async () => {
+            var id = sessionStorage.getItem("id")
+            var resp = await fetch(`http://localhost:8000/students/${id}`)
+            if (resp.ok == true) {
+                var student = await resp.json()
+                var fn = document.getElementById('fn')
+                fn.innerHTML = student.fullname
+                var email = document.getElementById('email')
+                email.innerHTML = student.email
+                var fac = document.getElementById('fac')
+                fac.innerHTML = student.faculty
+                var bd = document.getElementById('bd')
+                bd.innerHTML = student.birthday.substring(0, 10)
+               
+            }
+        }
+    </script>
+</body>
+
+</html>
